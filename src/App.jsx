@@ -19,11 +19,35 @@ import { Toaster } from "react-hot-toast";
 
 
 const App = () => {
+
+  const {isAuthorized, setIsAuthorized, setUser } = useContext(Context); //get all that was created in main file
+
+  useEffect(()=>{
+
+  }, [isAuthorized]); 
+  //it runs when page is refreshed....-> isAuthorized ki val jab jab change hogi tab tab useEffect run hoga
+
   return (
-    <>
-    
+  <>
+    <Router>
+      <Navbar />
+      <Routes>
+        <Route path="/login" element={<Login/>}/>
+        <Route path="/register" element={<Register/>}/>
+        <Route path="/job/getall" element={<Jobs/>}/>
+        <Route path="/job/:id" element={<JobDetails/>}/>
+        <Route path="/job/post" element={<PostJobs/>}/>
+        <Route path="/job/me" element={<MyJobs/>}/>
+        <Route path="/application/:id" element={<Application/>}/>
+        <Route path="/application/me" element={<MyApplications/>}/>
+        <Route path="*" element={<NotFound/>}/>
+      </Routes>
+      <Footer />
+      <Toaster />
+    </Router>
+
     </>
-  )
+    );
 };
 
 export default App
